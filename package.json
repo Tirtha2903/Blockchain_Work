@@ -1,0 +1,16 @@
+{
+  "name": "stellar-wallet",
+  "version": "2.0.0",
+  "description": "A Stellar wallet application with Soroban smart contract escrow integration",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "keywords": ["stellar", "soroban", "blockchain", "wallet", "escrow"],
+  "license": "MIT",
+  "dependencies": {
+    "@stellar/stellar-sdk": "^12.3.0",
+    "express": "^4.21.0"
+  }
+}

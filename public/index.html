@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Stellar Wallet — Create accounts, send XLM payments, and manage escrow on the Stellar testnet with Soroban smart contracts.">
+  <title>Stellar Wallet — Testnet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ── Animated Background ─────────────────── -->
+  <div class="bg-orbs">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <div class="app-container">
+
+    <!-- ── Header ──────────────────────────────── -->
+    <header class="app-header">
+      <div class="logo">
+        <svg class="logo-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="20" cy="20" r="18" stroke="url(#grad)" stroke-width="2.5" fill="none"/>
+          <path d="M12 20 L20 12 L28 20 L20 28 Z" fill="url(#grad)" opacity="0.8"/>
+          <defs><linearGradient id="grad" x1="0" y1="0" x2="40" y2="40"><stop offset="0%" stop-color="#7dd3fc"/><stop offset="100%" stop-color="#a78bfa"/></linearGradient></defs>
+        </svg>
+        <h1>Stellar Wallet</h1>
+      </div>
+      <span class="network-badge" id="networkBadge">● Testnet</span>
+    </header>
+
+    <!-- ── Status Bar ──────────────────────────── -->
+    <div class="status-bar" id="statusBar" style="display:none;">
+      <p id="statusMessage"></p>
+    </div>
+
+    <!-- ── Create Account Card ─────────────────── -->
+    <section class="card glass" id="createSection">
+      <div class="card-header">
+        <h2>Create Account</h2>
+        <span class="card-icon">🔑</span>
+      </div>
+      <p class="card-desc">Generate a new Stellar keypair and fund it with 10,000 test XLM via Friendbot.</p>
+      <button id="createAccount" class="btn btn-primary">
+        <span class="btn-text">Create New Account</span>
+        <span class="btn-loader" style="display:none;"></span>
+      </button>
+    </section>
+
+    <!-- ── Account Info Card ───────────────────── -->
+    <section class="card glass" id="accountInfo" style="display:none;">
+      <div class="card-header">
+        <h2>Your Account</h2>
+        <span class="card-icon">👤</span>
+      </div>
+      <div class="info-row">
+        <label>Public Key</label>
+        <div class="key-display">
+          <code id="publicKey"></code>
+          <button class="btn-copy" data-copy="publicKey" title="Copy">📋</button>
+        </div>
+      </div>
+      <div class="info-row">
+        <label>Secret Key <small class="danger-text">(keep safe!)</small></label>
+        <div class="key-display">
+          <code id="secret" class="secret-blur"></code>
+          <button class="btn-copy" data-copy="secret" title="Copy">📋</button>
+          <button class="btn-toggle-secret" id="toggleSecret" title="Reveal">👁️</button>
+        </div>
+      </div>
+      <div class="balance-display">
+        <span class="balance-label">Balance</span>
+        <span class="balance-value"><span id="balance">0</span> <small>XLM</small></span>
+      </div>
+      <button id="checkBalance" class="btn btn-secondary">Refresh Balance</button>
+    </section>
+
+    <!-- ── Send Payment Card ───────────────────── -->
+    <section class="card glass" id="paymentSection">
+      <div class="card-header">
+        <h2>Send Payment</h2>
+        <span class="card-icon">💸</span>
+      </div>
+      <div class="form-group">
+        <label for="senderSecret">Your Secret Key</label>
+        <input type="password" id="senderSecret" class="input" placeholder="S...">
+      </div>
+      <div class="form-group">
+        <label for="destination">Destination Public Key</label>
+        <input type="text" id="destination" class="input" placeholder="G...">
+      </div>
+      <div class="form-group">
+        <label for="amount">Amount (XLM)</label>
+        <input type="number" id="amount" class="input" placeholder="0.00" step="0.0000001" min="0.0000001">
+      </div>
+      <button id="sendPayment" class="btn btn-accent">
+        <span class="btn-text">Send Payment</span>
+        <span class="btn-loader" style="display:none;"></span>
+      </button>
+      <div id="transactionResult" class="tx-result" style="display:none;"></div>
+    </section>
+
+    <!-- ── Transaction History Card ────────────── -->
+    <section class="card glass" id="historySection" style="display:none;">
+      <div class="card-header">
+        <h2>Recent Transactions</h2>
+        <span class="card-icon">📜</span>
+      </div>
+      <div id="txList" class="tx-list">
+        <p class="empty-state">No transactions yet.</p>
+      </div>
+    </section>
+
+    <!-- ── Footer ──────────────────────────────── -->
+    <footer class="app-footer">
+      <p>Built with <a href="https://stellar.org" target="_blank" rel="noopener">Stellar</a> &amp; <a href="https://soroban.stellar.org" target="_blank" rel="noopener">Soroban</a></p>
+      <p class="muted">Testnet only — Do not use real funds</p>
+    </footer>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
